@@ -1,6 +1,6 @@
 # Reason bindings for Material-UI-Icons
 
-[![npm](https://img.shields.io/npm/v/@mscharley/bs-material-ui-icons.svg)](https://www.npmjs.com/package/@mscharley/bs-material-ui-icons)
+[![npm](https://img.shields.io/npm/v/@mscharley/bs-material-ui-icons.svg)](https://www.npmjs.com/package/@mscharley/bs-material-ui-icons) [![Greenkeeper badge](https://badges.greenkeeper.io/mscharley/bs-material-ui-icons.svg)](https://greenkeeper.io/)
 
 [Reason](https://reasonml.github.io/) bindings for [material-ui-icons](https://github.com/callemall/material-ui).
 
