@@ -26,6 +26,7 @@ external makeProps:
     ~color: string=?,
     ~fontSize: string=?,
     ~nativeColor: string=?,
+    ~style: ReactDOMRe.Style.t=?,
     ~titleAccess: string=?,
     ~viewBox: string=?,
     unit
@@ -39,10 +40,11 @@ module Make = (Icon: IconClass) => {
   include Icon;
   let make =
       (
-        ~color: option(color)=?,
         ~className: option(string)=?,
+        ~color: option(color)=?,
         ~fontSize: option(fontSize)=?,
         ~nativeColor: option(string)=?,
+        ~style: option(ReactDOMRe.Style.t)=?,
         ~titleAccess: option(string)=?,
         ~viewBox: option(string)=?,
         children: array(ReasonReact.reactElement),
@@ -55,6 +57,7 @@ module Make = (Icon: IconClass) => {
           ~color=?color->map(colorToJs),
           ~fontSize=?fontSize->map(fontSizeToJs),
           ~nativeColor?,
+          ~style?,
           ~titleAccess?,
           ~viewBox?,
           (),
