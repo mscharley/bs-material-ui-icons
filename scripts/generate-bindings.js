@@ -23,10 +23,18 @@ Object.keys(groupedIcons).map(icon => {
   const header = 'open Icon;\n';
   const contents = variants.reduce(
     (c, [importName, moduleName]) => `${c}
-module ${moduleName} = Make({
-  [@bs.module "@material-ui/icons/${importName}"]
-  external reactClass: ReasonReact.reactClass = "default";
-});
+module ${moduleName} = {
+  [@bs.module "@material-ui/icons/${importName}"][@react.component]
+  external make: (
+    ~className: string=?,
+    ~color: color=?,
+    ~fontSize: fontSize=?,
+    ~nativeColor: string=?,
+    ~style: ReactDOMRe.Style.t=?,
+    ~titleAccess: string=?,
+    ~viewBox: string=?,
+  ) => React.element = "default";
+};
 `,
     header,
   );
