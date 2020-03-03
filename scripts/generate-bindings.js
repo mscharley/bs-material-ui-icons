@@ -27,13 +27,12 @@ module ${moduleName} = {
   external make: (
     ~className: string=?,
     ~color: [@bs.string] [
-        | [@bs.as "default"] \`Default
-        | [@bs.as "error"] \`Error
         | [@bs.as "inherit"] \`Inherit
         | [@bs.as "primary"] \`Primary
         | [@bs.as "secondary"] \`Secondary
-        | [@bs.as "textPrimary"] \`TextPrimary
-        | [@bs.as "textSecondary"] \`TextSecondary
+        | [@bs.as "action"] \`Action
+        | [@bs.as "error"] \`Error
+        | [@bs.as "disabled"] \`Disabled
       ]=?,
     ~fontSize: [@bs.string] [
         | [@bs.as "default"] \`Default
