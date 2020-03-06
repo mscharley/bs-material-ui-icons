@@ -20,15 +20,26 @@ const groupedIcons = Object.keys(icons).reduce((acc, value) => {
 Object.keys(groupedIcons).map(icon => {
   const variants = groupedIcons[icon];
 
-  const header = 'open Icon;\n';
   const contents = variants.reduce(
     (c, [importName, moduleName]) => `${c}
 module ${moduleName} = {
   [@bs.module "@material-ui/icons/${importName}"][@react.component]
   external make: (
     ~className: string=?,
-    ~color: color=?,
-    ~fontSize: fontSize=?,
+    ~color: [@bs.string] [
+        | [@bs.as "inherit"] \`Inherit
+        | [@bs.as "primary"] \`Primary
+        | [@bs.as "secondary"] \`Secondary
+        | [@bs.as "action"] \`Action
+        | [@bs.as "error"] \`Error
+        | [@bs.as "disabled"] \`Disabled
+      ]=?,
+    ~fontSize: [@bs.string] [
+        | [@bs.as "default"] \`Default
+        | [@bs.as "inherit"] \`Inherit
+        | [@bs.as "small"] \`Small
+        | [@bs.as "large"] \`Large
+      ]=?,
     ~nativeColor: string=?,
     ~style: ReactDOMRe.Style.t=?,
     ~titleAccess: string=?,
@@ -36,7 +47,7 @@ module ${moduleName} = {
   ) => React.element = "default";
 };
 `,
-    header,
+    '',
   );
 
   return fs.writeFileSync(`./src/icons/${icon}.re`, contents);
