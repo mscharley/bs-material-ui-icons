@@ -7,12 +7,13 @@
     "build": "yarn generate-bindings && bsb -make-world",
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world",
-    "test": "exit 0",
+    "test": "yarn format",
     "prepack": "yarn run clean && yarn generate-bindings",
-    "generate-bindings": "rm -f src/icons/*.re && node ./scripts/generate-bindings.js",
-    "format:js": "prettier --write ./*.{js,json,md} ./**/*.{js,json,md}",
+    "generate-bindings": "rimraf -f src/icons/*.re && node ./scripts/generate-bindings.js",
+    "format:eslint": "eslint . --ext js,jsx",
+    "format:prettier": "prettier --write ./*.{json,md} ./**/*.{json,md}",
     "format:reason": "bsrefmt --in-place src/*.re",
-    "format": "yarn format:js && yarn format:reason",
+    "format": "yarn format:eslint && yarn format:prettier",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -44,13 +45,15 @@
   "devDependencies": {
     "@material-ui/core": "^3.1.1",
     "@material-ui/icons": "^3.0.1",
+    "@mscharley/eslint-config": "1.3.7",
+    "@mscharley/prettier-config": "1.1.1",
     "bs-platform": "8.0.3",
     "husky": "1.3.1",
     "lint-staged": "8.1.5",
-    "prettier": "1.17.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "reason-react": "^0.8.0",
+    "rimraf": "3.0.2",
     "semantic-release": "15.13.3"
   },
   "peerDependencies": {
@@ -64,13 +67,8 @@
     }
   },
   "lint-staged": {
-    "*.{js,json}": [
-      "prettier --write",
-      "git add"
-    ],
-    "src/*.re": [
-      "bsrefmt --in-place",
-      "git add"
-    ]
+    "*.js": "eslint --fix",
+    "*.{json,md}": "prettier --write",
+    "src/*.re": "bsrefmt --in-place"
   }
 }
