@@ -45,7 +45,7 @@ module ${moduleName} = {
         | [@bs.as "large"] \`Large
       ]=?,
     ~nativeColor: string=?,
-    ~style: ReactDOMRe.Style.t=?,
+    ~style: ReactDOM.Style.t=?,
     ~titleAccess: string=?,
     ~viewBox: string=?,
   ) => React.element = "default";
