@@ -9,7 +9,7 @@
     "clean": "bsb -clean-world",
     "test": "yarn format",
     "prepack": "yarn run clean && yarn generate-bindings",
-    "generate-bindings": "rm -f src/icons/*.re && node ./scripts/generate-bindings.js",
+    "generate-bindings": "rimraf -f src/icons/*.re && node ./scripts/generate-bindings.js",
     "format:eslint": "eslint . --ext js,jsx",
     "format:prettier": "prettier --write ./*.{json,md} ./**/*.{json,md}",
     "format:reason": "bsrefmt --in-place src/*.re",
@@ -53,6 +53,7 @@
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "reason-react": "^0.8.0",
+    "rimraf": "3.0.2",
     "semantic-release": "15.13.3"
   },
   "peerDependencies": {

@@ -21,7 +21,7 @@ const groupedIcons = Object.keys(icons).reduce((acc, value) => {
 }, {});
 
 Promise.all(
-  Object.keys(groupedIcons).map((icon) => {
+  Object.keys(groupedIcons).map(async (icon) => {
     const variants = groupedIcons[icon];
 
     const contents = variants.reduce(
@@ -54,11 +54,12 @@ module ${moduleName} = {
       '',
     );
 
-    return writeFileAsync(`./src/icons/${icon}.re`, contents);
+    await writeFileAsync(`./src/icons/${icon}.re`, contents);
+    process.stdout.write('.');
   }),
 )
   .then(() => {
-    console.log('All done!');
+    console.log('\nAll done!');
   })
   .catch((e) => {
     console.error(e);
