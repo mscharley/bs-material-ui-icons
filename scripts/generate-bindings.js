@@ -44,7 +44,7 @@ module ${moduleName} = {
         | [@bs.as "small"] \`Small
         | [@bs.as "large"] \`Large
       ]=?,
-    ~nativeColor: string=?,
+    ~htmlColor: string=?,
     ~style: ReactDOM.Style.t=?,
     ~titleAccess: string=?,
     ~viewBox: string=?,

@@ -20,7 +20,7 @@ describe("AccessTime", () => {
             className="hello-world"
             color=`Primary
             fontSize=`Large
-            nativeColor="#000000"
+            htmlColor="#000000"
             style={ReactDOM.Style.make(~width="50px", ~height="50px", ())}
             titleAccess="access title"
             viewBox="viewbox"

@@ -7,7 +7,7 @@
     "build": "yarn generate-bindings && bsb -make-world",
     "start": "bsb -make-world -w",
     "clean": "bsb -clean-world",
-    "test": "yarn format && yarn build && yarn test:jest",
+    "test": "yarn format && yarn test:jest",
     "test:jest": "jest",
     "test:jest:update": "jest --updateSnapshot",
     "prepack": "yarn run clean && yarn generate-bindings",
