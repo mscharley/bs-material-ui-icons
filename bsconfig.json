@@ -1,15 +1,25 @@
 {
+  "$schema": "https://raw.githubusercontent.com/rescript-lang/rescript-compiler/master/docs/docson/build-schema.json",
   "name": "@mscharley/bs-material-ui-icons",
   "namespace": true,
   "bsc-flags": ["-bs-super-errors"],
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
   "sources": [
     {
       "dir": "src",
       "subdirs": true
+    },
+    {
+      "dir": "__tests__",
+      "type": "dev"
     }
   ],
   "suffix": ".bs.js",
   "bs-dependencies": ["@rescript/react"],
+  "bs-dev-dependencies": ["@glennsl/bs-jest"],
   "reason": {
     "react-jsx": 3
   },
