@@ -16,6 +16,7 @@ jobs:
       - image: circleci/node:14
     steps:
       - checkout
+      - run: npm i -g npm
       - run: yarn install
       - run: yarn semantic-release
 
