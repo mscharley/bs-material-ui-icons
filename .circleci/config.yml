@@ -1,22 +1,24 @@
 version: 2.1
 
+orbs:
+  node: circleci/node@4.2.0
+
 jobs:
   build:
-    working_directory: ~/bs-material-ui-icons
-    docker:
-      - image: circleci/node:14
+    executor:
+      name: node/default
+      tag: "14.16"
     steps:
       - checkout
       - run: yarn install
       - run: yarn build
       - run: yarn test
   deploy:
-    working_directory: ~/bs-material-ui-icons
-    docker:
-      - image: circleci/node:14
+    executor:
+      name: node/default
+      tag: "14.16"
     steps:
       - checkout
-      - run: npm i -g npm
       - run: yarn install
       - run: yarn semantic-release
 
