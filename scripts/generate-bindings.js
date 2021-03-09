@@ -1,11 +1,14 @@
+/* eslint-disable no-console */
 const icons = require('@material-ui/icons');
-const fs = require('fs');
-const os = require('os');
+const { writeFile } = require('fs');
+const { promisify } = require('util');
 
-const variants = ['Outlined', 'Rounded', 'TwoTone', 'Sharp'];
+const writeFileAsync = promisify(writeFile);
+
+const variantTypes = ['Outlined', 'Rounded', 'TwoTone', 'Sharp'];
 
 const groupedIcons = Object.keys(icons).reduce((acc, value) => {
-  const variant = variants.find(v => value.endsWith(v));
+  const variant = variantTypes.find((v) => value.endsWith(v));
   const iconName = variant
     ? value.substring(0, value.length - variant.length)
     : value;
@@ -17,11 +20,12 @@ const groupedIcons = Object.keys(icons).reduce((acc, value) => {
   return acc;
 }, {});
 
-Object.keys(groupedIcons).map(icon => {
-  const variants = groupedIcons[icon];
+Promise.all(
+  Object.keys(groupedIcons).map(async (icon) => {
+    const variants = groupedIcons[icon];
 
-  const contents = variants.reduce(
-    (c, [importName, moduleName]) => `${c}
+    const contents = variants.reduce(
+      (c, [importName, moduleName]) => `${c}
 module ${moduleName} = {
   [@bs.module "@material-ui/icons/${importName}"][@react.component]
   external make: (
@@ -47,8 +51,18 @@ module ${moduleName} = {
   ) => React.element = "default";
 };
 `,
-    '',
-  );
+      '',
+    );
 
-  return fs.writeFileSync(`./src/icons/${icon}.re`, contents);
-});
+    await writeFileAsync(`./src/icons/${icon}.re`, contents);
+    process.stdout.write('.');
+  }),
+)
+  .then(() => {
+    console.log('\nAll done!');
+  })
+  .catch((e) => {
+    console.error(e);
+    // eslint-disable-next-line no-process-exit
+    process.exit(1);
+  });

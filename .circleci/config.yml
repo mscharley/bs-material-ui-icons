@@ -4,7 +4,7 @@ jobs:
   build:
     working_directory: ~/bs-material-ui-icons
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:14
     steps:
       - checkout
       - run: yarn install
@@ -13,7 +13,7 @@ jobs:
   deploy:
     working_directory: ~/bs-material-ui-icons
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:14
     steps:
       - checkout
       - run: yarn install
